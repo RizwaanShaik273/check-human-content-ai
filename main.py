@@ -44,7 +44,12 @@ def classify_text_with_threshold(text, classifier, candidate_labels, threshold):
 # Function to process the CSV file and apply scoring logic
 def process_csv(file, classifier, candidate_labels, threshold):
     try:
-        df = pd.read_csv(file)
+        # Attempt to read the file with utf-8 encoding, fallback to 'ISO-8859-1'
+        try:
+            df = pd.read_csv(file, encoding="utf-8")
+        except UnicodeDecodeError:
+            df = pd.read_csv(file, encoding="ISO-8859-1")
+        
         required_columns = ['email', 'a', 'b', 'c', 'd', 'e']
         missing_columns = [col for col in required_columns if col not in df.columns]
         
