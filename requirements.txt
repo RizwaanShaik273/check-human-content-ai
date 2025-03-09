@@ -1,4 +1,6 @@
 streamlit
+google-generativeai
+yfinance
 pandas
-transformers
-torch
+plotly
+ta-lib  # If you are using ta-lib, include it. If not, remove this line.
